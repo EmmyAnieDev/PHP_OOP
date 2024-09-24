@@ -5,7 +5,7 @@
         // Properties are variables inside a class
         public $age;      // This property can be accessed or modified outside the class
         private $name;    // This property can't be accessed or modified outside the class
-        protected $email;   // this can only be accessed inside the classed declared in or sub classes.
+        protected $email;   // this can only be accessed inside the class declared in, and sub classes incase of overiding.
         public $role = 'Member';
 
         // Constructor to initialize the values when the object is created
