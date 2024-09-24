@@ -5,7 +5,8 @@
         // Properties are variables inside a class
         public $age;      // This property can be accessed or modified outside the class
         private $name;    // This property can't be accessed or modified outside the class
-        private $email;
+        protected $email;   // this can only be accessed inside the classed declared in or sub classes.
+        public $role = 'Member';
 
         // Constructor to initialize the values when the object is created
         public function __construct($name, $email, $age) {
@@ -37,6 +38,16 @@
             }
         }
 
+        public function userRole(){
+            return "$this->name is a $this->role";
+            
+        }
+
+
+        public function message(){
+            return "$this->email, a member has sent a message";
+        }
+
     }
 
 
@@ -48,7 +59,9 @@
     // Calling methods and accessing public properties
     echo $userOne->signOut() . '<br />';  
     echo $userTwo->login() . '<br />';    
-    echo $userThree->age . '<br />';      
+    echo $userThree->age . '<br />';
+    echo $userTwo->userRole() . '<br />';
+    echo $userOne->message() . '<br />'; 
 
     ////// The following line will not work because $name is private
     //echo $userThree->name; 
@@ -57,9 +70,9 @@
     echo $userThree->getName() . '<br />'; 
 
     // now we can echo/access/modify the email using the setter method.
-    echo $userThree->setEmail('ryu@gmail.com') . '<br />';
+    echo $userThree->setEmail('ryu@gmail.com');
 
-    // echo to test the chnaged email
+    // echo to test the changed email
     echo $userThree->login() . '<br />';
 
 

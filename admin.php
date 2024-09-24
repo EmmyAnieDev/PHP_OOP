@@ -12,6 +12,7 @@ include 'index.php';
 class Admin extends User {
 
     public $level;
+    public $role = 'Admin';  // overiding the role property in the user class
 
     public function __construct($name, $email, $age, $level){
         $this->level = $level;
@@ -21,16 +22,25 @@ class Admin extends User {
     public function userLevel(){
         return "Admin level is ($this->level)";
     }
+
+
+    // overiding a method
+    public function message(){
+        return "$this->email, an admin has sent a message";
+    }
 }
 
 
 $adminOne = new Admin('Sarah', 'sarah@co.uk', 19, 'Advanced');
+$adminTwo = new Admin('tom', 'tommy@co.uk', 39, 'Moderator');
 
 
 // calling methods from the super class
 echo $adminOne->getName() . '<br />';
 echo $adminOne->login() . '<br />';
-echo $adminOne->level . '<br />'; 
+echo $adminOne->role . '<br />'; 
 echo $adminOne->userLevel() . '<br />'; 
+echo $adminTwo->userRole() . '<br />';
+echo $adminTwo->message() . '<br />';
 
 ?>
