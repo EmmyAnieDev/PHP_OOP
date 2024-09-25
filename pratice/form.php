@@ -3,8 +3,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require 'user_validation.php';
+
     if(isset($_POST['submit'])){
-        echo "form submitted";
+        // validate entries
+        $validation = new UserValidator($_POST);
+        $errors = $validation->validateForm();
     }
 
 
@@ -28,10 +32,12 @@ ini_set('display_errors', 1);
         <form action="<?php  echo $_SERVER['PHP_SELF']  ?>" method="POST">  
 
             <label>Username:</label>
-            <input type="text" name="username" value="">
+            <input type="text" name="username" value=" <?php !empty($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?> ">
+            <div class="error"> <?php echo $errors['username'] ?? '' ?></div>
         
             <label>Email</label>
-            <input type="text" name="email" value="">
+            <input type="text" name="email" value=" <?php !empty($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?> ">
+            <div class="error"> <?php echo $errors['email'] ?? '' ?></div>
   
             <input type="submit" name="submit" value="submit" class="">
      
